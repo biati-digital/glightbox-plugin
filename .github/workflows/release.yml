@@ -4,14 +4,19 @@ on:
 
 jobs:
   publish:
+    name: Publish Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
+          cache: "npm"
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
-      - uses: JS-DevTools/npm-publish@v3
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v2
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
