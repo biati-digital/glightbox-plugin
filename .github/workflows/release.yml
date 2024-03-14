@@ -9,12 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
           cache: "npm"
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
+
+      - name: Generate changelog
+        uses: tj-actions/git-cliff@v1
+        with:
+          args: --latest --strip all
+          output: "CHANGELOG.md"
+
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
