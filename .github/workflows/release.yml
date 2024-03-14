@@ -23,6 +23,7 @@ jobs:
         with:
           type: 'zip'
           filename: 'dist.zip'
+          exclusions: '*.ts'
           path: 'dist'
 
       - name: Generate changelog
