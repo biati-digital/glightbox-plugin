@@ -1,0 +1,46 @@
+{
+  "name": "glightbox-plugin",
+  "version": "0.0.1",
+  "description": "GLightbox plugin",
+  "scripts": {
+    "dev": "vite",
+    "watch": "vite build --watch",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "publish": "npm run build && npm publish"
+  },
+  "author": "Biati Digital",
+  "keywords": [
+    "lightbox",
+    "javascript",
+    "gallery",
+    "popup"
+  ],
+  "license": "MIT",
+  "homepage": "https://biati-digital.github.io/glightbox/",
+  "repository": {
+    "url": "https://github.com/biati-digital/glightbox",
+    "type": "git"
+  },
+  "bugs": "https://github.com/biati-digital/glightbox/issues",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/glightbox-plugin.umd.cjs",
+  "module": "./dist/glightbox-plugin.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/glightbox-plugin.js",
+      "require": "./dist/glightbox-plugin.umd.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "typescript": "^5.0.2",
+    "vite": "^5.1.6",
+    "vite-plugin-dts": "^3.6.0"
+  }
+}
