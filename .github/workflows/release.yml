@@ -18,6 +18,13 @@ jobs:
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
 
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: 'dist.zip'
+          path: 'dist'
+
       - name: Generate changelog
         uses: tj-actions/git-cliff@v1
         with:
@@ -27,8 +34,10 @@ jobs:
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "dist"
+          artifacts: "dist.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           bodyFile: "CHANGELOG.md"
+          artifactErrorsFailBuild: true
+          makeLatest: true
           draft: false
           prerelease: false
