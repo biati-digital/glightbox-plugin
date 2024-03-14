@@ -88,8 +88,9 @@ export default abstract class GLightboxPlugin implements Plugin {
     }
 
     /**
-     * Use this method to define assets used
-     * useful in case
+     * Use this method to define assets useful in case
+     * your plugins needs to insert a Javascript library
+     * or a CSS file
     */
     assets(): PluginAssets {
         return {};
