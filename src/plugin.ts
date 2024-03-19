@@ -1,3 +1,5 @@
+type PluginTypes = 'slide' | 'theme' | 'other';
+
 export interface PluginAssets {
     css?: string[];
     js?: string[];
@@ -5,7 +7,7 @@ export interface PluginAssets {
 
 export interface Plugin {
     name: string;
-    type: string;
+    type: PluginTypes;
     version?: string;
     instance?: any;
     attributes?: string[] | undefined;
@@ -38,7 +40,7 @@ export default abstract class GLightboxPlugin implements Plugin {
     abstract name: string;
 
     /** Plugin type */
-    abstract type: string;
+    abstract type: PluginTypes;
 
     /** Version of this plugin. Currently not in use, defined here for backward compatibility. */
     version?: string;
