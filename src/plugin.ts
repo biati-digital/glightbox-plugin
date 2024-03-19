@@ -1,3 +1,7 @@
+import { GLightbox } from 'glightbox';
+
+type PluginTypes = 'slide' | 'theme' | 'other';
+
 export interface PluginAssets {
     css?: string[];
     js?: string[];
@@ -5,16 +9,16 @@ export interface PluginAssets {
 
 export interface Plugin {
     name: string;
-    type: string;
+    type: PluginTypes;
     version?: string;
-    instance?: any;
+    instance?: InstanceType<typeof GLightbox>;
     attributes?: string[] | undefined;
-    init?: Function;
-    destroy?: Function;
-    build?: Function;
-    match?: Function;
-    cssStyle?: Function;
-    assets?: Function;
+    init?: () => void;
+    destroy?: () => void;
+    build?: (buildParams: BuildParams) => Promise<boolean>;
+    match?: (url: string) => boolean;
+    cssStyle?: () => string;
+    assets?: () => PluginAssets;
 }
 
 export interface SlideParams {
@@ -38,13 +42,13 @@ export default abstract class GLightboxPlugin implements Plugin {
     abstract name: string;
 
     /** Plugin type */
-    abstract type: string;
+    abstract type: PluginTypes;
 
     /** Version of this plugin. Currently not in use, defined here for backward compatibility. */
     version?: string;
 
     /** GLightbox instance */
-    instance?: any;
+    instance?: InstanceType<typeof GLightbox>;
 
     /** Custom data attributes used by your plugin */
     attributes?: string[];
