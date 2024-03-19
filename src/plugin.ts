@@ -11,12 +11,12 @@ export interface Plugin {
     version?: string;
     instance?: any;
     attributes?: string[] | undefined;
-    init?: Function;
-    destroy?: Function;
-    build?: Function;
-    match?: Function;
-    cssStyle?: Function;
-    assets?: Function;
+    init?: () => void;
+    destroy?: () => void;
+    build?: (buildParams: BuildParams) => Promise<boolean>;
+    match?: (url: string) => boolean;
+    cssStyle?: () => string;
+    assets?: () => PluginAssets;
 }
 
 export interface SlideParams {
