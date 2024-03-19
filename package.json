@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.8.0",
+    "glightbox": "^4.0.0-beta.2",
     "typescript": "^5.0.2",
     "vite": "^5.1.6",
     "vite-plugin-dts": "^3.6.0"

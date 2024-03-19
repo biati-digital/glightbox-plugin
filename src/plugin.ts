@@ -1,3 +1,5 @@
+import { GLightbox } from 'glightbox';
+
 type PluginTypes = 'slide' | 'theme' | 'other';
 
 export interface PluginAssets {
@@ -9,7 +11,7 @@ export interface Plugin {
     name: string;
     type: PluginTypes;
     version?: string;
-    instance?: any;
+    instance?: InstanceType<typeof GLightbox>;
     attributes?: string[] | undefined;
     init?: () => void;
     destroy?: () => void;
@@ -46,7 +48,7 @@ export default abstract class GLightboxPlugin implements Plugin {
     version?: string;
 
     /** GLightbox instance */
-    instance?: any;
+    instance?: InstanceType<typeof GLightbox>;
 
     /** Custom data attributes used by your plugin */
     attributes?: string[];
